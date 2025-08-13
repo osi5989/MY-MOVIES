@@ -1,83 +1,112 @@
+/* רקע דף כהה עם גרדיאנט */
 body {
-  background-color: #121212;
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a2e 100%);
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
 }
 
+/* קונטיינר כללי */
 .container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   padding: 20px;
+  text-align: center;
 }
 
+/* כותרת ראשית */
 .title {
   text-align: center;
   margin-bottom: 20px;
+  color: #7f5af0;
+  font-size: 2.5rem;
 }
 
+/* טופס חיפוש */
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.search-form input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  width: 300px;
+}
+
+.search-form button {
+  padding: 10px 20px;
+  background-color: #7f5af0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.search-form button:hover {
+  background-color: #6246ea;
+}
+
+/* גריד הסרטים */
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 סרטים בשורה */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
+/* כרטיסי סרטים עם Hover */
 .movie-card {
-  background-color: #1e1e1e;
+  background-color: #1e1e2e;
   border-radius: 10px;
   padding: 15px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); /* דק יותר */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .movie-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transform: translateY(-5px); /* מעט התרוממות */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7); /* shadow יותר מודגש בהובר */
 }
 
 .movie-card img {
   width: 100%;
-  height: 350px; /* גובה קבוע לכל התמונות */
+  height: 350px;
   object-fit: cover;
   border-radius: 8px;
 }
 
+.movie-card h3 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #7f5af0;
+}
+
+/* דירוג כוכבים עם Hover */
 .star-rating {
   display: flex;
-  margin-top: 8px;
+  justify-content: center;
+  gap: 5px;
 }
 
-.star {
-  font-size: 24px;
+.star-rating svg {
+  transition: transform 0.2s, color 0.2s;
   cursor: pointer;
-  color: gray;
 }
 
-.star.filled {
-  color: gold;
+.star-rating svg:hover {
+  transform: scale(1.2);
+  color: #ffd700;
 }
 
-p {
-  font-size: 14px;
-  color: #ccc;
-  margin-top: 10px;
-}
-
-@media (max-width: 1024px) {
-  .movies-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .movies-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .movies-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* רספונסיביות */
+@media (max-width: 1024px) { .movies-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 768px)  { .movies-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px)  { .movies-grid { grid-template-columns: 1fr; } }
