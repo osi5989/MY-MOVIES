@@ -1,39 +1,23 @@
-// import React from "react";
+import React, { useState } from "react";
 
-// function StarRating({ rating, onRate }) {
-//   return (
-//     <div className="star-rating">
-//       {[1, 2, 3, 4, 5].map((star) => (
-//         <span
-//           key={star}
-//           onClick={() => onRate(star)}
-//           className={star <= rating ? "star filled" : "star"}
-//         >
-//           ★
-//         </span>
-//       ))}
-//     </div>
-//   );
-// }
+export default function StarRating({ onRate }) {
+  const [rating, setRating] = useState(0);
 
-// export default StarRating;
+  const handleClick = (value) => {
+    setRating(value);
+    if (onRate) onRate(value);
+  };
 
-
-// src/Components/StarRating.jsx
-import React from "react";
-import { FaStar } from "react-icons/fa";
-
-export default function StarRating({ rating, onRate }) {
   return (
-    <div className="star-rating">
+    <div>
       {[1, 2, 3, 4, 5].map((star) => (
-        <FaStar
+        <span
           key={star}
-          size={24}
-          color={star <= rating ? "#ffd700" : "#555"}
-          style={{ cursor: "pointer" }}
-          onClick={() => onRate(star)}
-        />
+          className={star <= rating ? "star filled" : "star"}
+          onClick={() => handleClick(star)}
+        >
+          ★
+        </span>
       ))}
     </div>
   );
