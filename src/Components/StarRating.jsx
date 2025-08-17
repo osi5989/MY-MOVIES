@@ -1,23 +1,24 @@
-import React, { useState } from "react";
 
-export default function StarRating({ onRate }) {
-  const [rating, setRating] = useState(0);
 
-  const handleClick = (value) => {
-    setRating(value);
-    if (onRate) onRate(value);
-  };
+import React from "react";
+import { FaStar } from "react-icons/fa";
+
+export default function StarRating({ value = 0, onRate }) {
+  const stars = [1, 2, 3, 4, 5];
 
   return (
-    <div>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <span
+    <div className="star-rating">
+      {stars.map((star) => (
+        <FaStar
           key={star}
-          className={star <= rating ? "star filled" : "star"}
-          onClick={() => handleClick(star)}
-        >
-          ★
-        </span>
+          size={24}
+          color={star <= value ? "#ffd700" : "#555"}
+          style={{ cursor: "pointer", transition: "transform 0.2s, color 0.2s" }}
+          onClick={() => onRate(star)}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.3)")}
+          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          data-testid={`star-${star}`} // ✅ מאפשר לטסט למצוא את הכוכב
+        />
       ))}
     </div>
   );

@@ -81,7 +81,6 @@ h1 {
   margin-bottom: 10px;
 }
 
-
 .movie-info h3 {
   margin: 0 0 10px;
   font-size: 16px;
@@ -104,7 +103,17 @@ h1 {
 }
 
 .star.filled {
-  color: #e0e0e0;
+  color: hsl(55, 100%, 71%);
+}
+
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.star-rating svg {
+  transition: transform 0.2s, color 0.2s;
 }
 
 .external-ratings {
@@ -131,3 +140,4 @@ h1 {
   color: #ccc;
   margin: 0;
 }
+
