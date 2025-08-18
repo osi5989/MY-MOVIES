@@ -1,25 +1,85 @@
+// import React, { useState, useEffect } from "react";
+
+// export default function SearchBar({ onSearch }) {
+//   const [query, setQuery] = useState("");
+
+//   // מופיע פעם אחת כשהקומפוננטה עולה
+//   useEffect(() => {
+//     console.info("SearchBar component mounted");
+//   }, []);
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (query.trim() !== "") {
+//       // לוג שמראה שהתחיל החיפוש
+//       console.info("Fetching movies from API...");
+//       // מראה מה המשתמש שלח לחיפוש
+//       console.log(`Submitting search query: "${query.trim()}"`);
+//       onSearch(query.trim());
+//     } else {
+//       // מזהיר אם השדה ריק
+//       console.warn("Search query is empty, nothing to submit");
+//     }
+//   };
+
+//   return (
+//     <form className="search-form" onSubmit={handleSubmit}>
+//       <input
+//         type="text"
+//         placeholder="Search movies..."
+//         value={query}
+//         onChange={(e) => {
+//           setQuery(e.target.value);
+//           // מראה בזמן אמת את השינויים בשדה החיפוש
+//           console.debug(`Query changed: "${e.target.value}"`);
+//         }}
+//       />
+//       <button type="submit">Search</button>
+//     </form>
+//   );
+// }
+
 
 import React, { useState, useEffect } from "react";
 
 export default function SearchBar({ onSearch }) {
   const [query, setQuery] = useState("");
 
-  // מופיע פעם אחת כשהקומפוננטה עולה
   useEffect(() => {
     console.info("SearchBar component mounted");
   }, []);
 
+  const MAX_LENGTH = 40;
+  const forbiddenPattern = /[<>\\\/"'`;]/g; // forbidden characters
+
+  const handleChange = (e) => {
+    let value = e.target.value;
+
+    // Check for forbidden characters
+    if (forbiddenPattern.test(value)) {
+      alert("Forbidden characters are not allowed: < > \\ / \" ' ` ;");
+      value = value.replace(forbiddenPattern, ""); // remove them
+    }
+
+    // Check length
+    if (value.length > MAX_LENGTH) {
+      alert(`You can only enter up to ${MAX_LENGTH} characters!`);
+      value = value.slice(0, MAX_LENGTH); // trim to max
+    }
+
+    setQuery(value);
+    console.debug(`Query changed: "${value}"`);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() !== "") {
-      // לוג שמראה שהתחיל החיפוש
       console.info("Fetching movies from API...");
-      // מראה מה המשתמש שלח לחיפוש
       console.log(`Submitting search query: "${query.trim()}"`);
       onSearch(query.trim());
     } else {
-      // מזהיר אם השדה ריק
       console.warn("Search query is empty, nothing to submit");
+      alert("Search query cannot be empty!");
     }
   };
 
@@ -29,14 +89,10 @@ export default function SearchBar({ onSearch }) {
         type="text"
         placeholder="Search movies..."
         value={query}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          // מראה בזמן אמת את השינויים בשדה החיפוש
-          console.debug(`Query changed: "${e.target.value}"`);
-        }}
+        onChange={handleChange}
+        maxLength={MAX_LENGTH} // safeguard
       />
       <button type="submit">Search</button>
     </form>
   );
 }
-

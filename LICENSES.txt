@@ -1,0 +1,30 @@
+# Third-Party Licenses & External Sources
+
+This file lists the licenses of third-party libraries and external sources used in this project.
+
+---
+
+## React
+- License: MIT
+- Source: https://github.com/facebook/react
+
+## React DOM
+- License: MIT
+- Source: https://github.com/facebook/react
+
+## React Icons
+- License: MIT
+- Source: https://github.com/react-icons/react-icons
+
+---
+
+## External APIs / Websites
+- **OMDb API**  
+  Used for fetching movie information and ratings.  
+  Website: https://www.omdbapi.com/  
+  License/Terms: Free for limited usage, see API documentation for full terms.
+
+- **TMDb (The Movie Database) API**  
+  Used for fetching top movie recommendations.  
+  Website: https://www.themoviedb.org/  
+  License/Terms: See https://www.themoviedb.org/documentation/api/terms-of-use
