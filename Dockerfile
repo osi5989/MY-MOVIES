@@ -1,0 +1,15 @@
+# שלב 1: בנייה של האפליקציה
+FROM node:18 AS build
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# שלב 2: הרצה ע"י nginx (שרת סטטי)
+FROM nginx:alpine
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

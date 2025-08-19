@@ -1,9 +1,11 @@
-// App.jsx
+
 import React, { useState } from "react";
 import SearchBar from "./Components/SearchBar";
 import MovieCard from "./Components/MovieCard";
 import TopMovies from "./Components/TopMovies"; // ✅ הוספנו את קומפוננטת ההמלצות
 import "./App.css";
+
+
 
 const API_KEY = "6d841da8"; // OMDb API key שלך
 

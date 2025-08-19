@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 
 const API_KEY = "765a93e1b3f478529b9aacd12c6f3523";
 
@@ -8,10 +9,17 @@ export default function TopMovies() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // לוג שמופיע פעם אחת בלבד כשהקומפוננטה נטענת
+  useEffect(() => {
+    console.info("🚀 TopMovies component mounted - App started working!");
+  }, []);
+
   const handleToggle = async () => {
+    console.log("🔘 Button clicked, toggling movies list");
     if (!show) {
       setLoading(true);
       setError(null);
+      console.log("⏳ Fetching top movies from API...");
       try {
         const res = await fetch(
           `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
@@ -27,19 +35,22 @@ export default function TopMovies() {
                 `https://api.themoviedb.org/3/movie/${movie.id}/reviews?api_key=${API_KEY}&language=en-US&page=1`
               );
               const reviewData = await reviewRes.json();
+              console.log(`✅ Got reviews for: ${movie.title}`);
               return {
                 ...movie,
                 reviews: reviewData.results.slice(0, 2), // שתי ביקורות ראשונות
               };
             } catch (err) {
+              console.error(`⚠️ Failed fetching reviews for: ${movie.title}`);
               return { ...movie, reviews: [] };
             }
           })
         );
 
         setMovies(moviesWithReviews);
+        console.log("🎉 Movies loaded successfully");
       } catch (err) {
-        console.error(err);
+        console.error("❌ Error fetching movies:", err);
         setError("Error fetching movies.");
       } finally {
         setLoading(false);
@@ -120,3 +131,4 @@ export default function TopMovies() {
     </div>
   );
 }
+

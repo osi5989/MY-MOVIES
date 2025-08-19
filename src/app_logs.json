@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "2025-08-16T08:55:33.654Z",
+    "message": "App started"
+  },
+  {
+    "timestamp": "2025-08-16T08:55:33.656Z",
+    "message": "Fetching movies from API..."
+  },
+  {
+    "timestamp": "2025-08-16T08:55:36.107Z",
+    "message": "App started"
+  },
+  {
+    "timestamp": "2025-08-16T08:55:36.108Z",
+    "message": "Fetching movies from API..."
+  }
+]
