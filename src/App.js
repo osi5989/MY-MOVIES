@@ -1,15 +1,10 @@
-// App.jsx
+
 import React, { useState } from "react";
 import SearchBar from "./Components/SearchBar";
 import MovieCard from "./Components/MovieCard";
 import TopMovies from "./Components/TopMovies"; // ✅ הוספנו את קומפוננטת ההמלצות
 import "./App.css";
-const { log, exportLogsToTxt } = require('./logger');
 
-log("App started");
-log("Fetching movies from API...");
-
-// שאר הקוד של האפליקציה
 
 
 const API_KEY = "6d841da8"; // OMDb API key שלך
